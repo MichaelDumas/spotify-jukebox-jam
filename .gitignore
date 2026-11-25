@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Build outputs & TypeScript cache
+dist/
+build/
+*.tsbuildinfo
+
+# SQLite WAL / journal sidecar files
+*.db
+*.db-wal
+*.db-shm
+*.db-journal
+
+# Environment & local secrets
+.env
+.env.*
+!.env.example
+
+# Logs & runtime caches
+*.log
+npm-debug.log*
+.vite/
+.cache/
+
+# Editor & OS junk
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp

@@ -1,0 +1,35 @@
+import "./index.css";
+import { StrictMode, useState } from "react";
+import { createRoot } from "react-dom/client";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createTRPCClient, httpBatchLink } from "@trpc/client";
+import { TRPCProvider } from "./trpc";
+import type { AppRouter } from "../../router";
+import App from "./App";
+
+function Root() {
+  const [queryClient] = useState(() => new QueryClient());
+  const [trpcClient] = useState(() =>
+      createTRPCClient<AppRouter>({
+        links: [
+          httpBatchLink({
+            url: "/api/trpc",
+          }),
+        ],
+      })
+  );
+
+  return (
+      <QueryClientProvider client={queryClient}>
+        <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
+          <App />
+        </TRPCProvider>
+      </QueryClientProvider>
+  );
+}
+
+createRoot(document.getElementById("root")!).render(
+    <StrictMode>
+      <Root />
+    </StrictMode>
+);
