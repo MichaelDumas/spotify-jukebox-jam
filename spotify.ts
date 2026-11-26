@@ -1,4 +1,4 @@
-import {AuthDB} from "./client/src/db.ts";
+import {AuthDB} from "./db.ts";
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID ?? "";
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET ?? "";
@@ -16,7 +16,6 @@ interface SpotifyTokenResponse {
 
 let accessToken: string | undefined;
 let expiresAt = 0;
-let refreshToken: string | undefined;
 
 
 export function getAuthUrl() {
@@ -112,7 +111,7 @@ export async function getArtistPicture(artistId: string) {
   return res.text().then((t) => (t ? JSON.parse(t)?.images?.[0]?.url : null));
 }
 
-interface SpotifySearchResponse {
+export interface SpotifySearchResponse {
   tracks: {
     limit: number,
     offset: number,

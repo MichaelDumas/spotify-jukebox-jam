@@ -1,4 +1,3 @@
-// server/router.ts
 import { initTRPC } from "@trpc/server";
 import { z } from "zod";
 import {searchTracks} from "./spotify.ts";
@@ -13,5 +12,4 @@ export const appRouter = t.router({
   }),
 });
 
-// Export ONLY the type for the frontend
 export type AppRouter = typeof appRouter;

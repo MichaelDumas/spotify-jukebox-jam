@@ -96,22 +96,38 @@ export function LyricCard(props: LyricCardProps) {
     return <p className="text-6xl text-gray-300">{lyric}</p>
   };
 
+  const renderContent = () => {
+    if (lyricFile) {
+      return (
+          <div className="mask-t-from-95% mask-b-from-80% overflow-hidden flex flex-col gap-12" ref={containerRef}>
+            {lyrics?.past.map(renderLyric)}
+            <p ref={activeLyricRef} className="text-6xl font-bold">{lyrics?.current ?? ""}</p>
+            {lyrics?.future.map(renderLyric)}
+            <div className="h-3/4 shrink-0" aria-hidden="true" />
+          </div>)
+    }
+
+    if (!props.currentSong) {
+      return (
+          <div className="w-full h-full text-center flex flex-col justify-center">
+            <h2 className="text-4xl italic text-gray-200">No song currently playing</h2>
+            <h2 className="text-xl italic text-gray-400">Add a song to the queue to get started</h2>
+          </div>
+      )
+    }
+
+    return (
+        <div className="w-full h-full text-center flex flex-col justify-center">
+          {/* TODO: Put some sort of not found icon here */}
+          <h2 className="text-4xl italic text-gray-200">No lyrics found</h2>
+          <h2 className="text-xl italic text-gray-400">You are too tapped into the underground</h2>
+        </div>
+    )
+  }
+
   return (
       <GlassCard className="flex-col h-full overflow-hidden scroll-mt-8 pt-8">
-        {lyricFile ? (
-            <div className="mask-t-from-95% mask-b-from-80% overflow-hidden flex flex-col gap-12" ref={containerRef}>
-              {lyrics?.past.map(renderLyric)}
-              <p ref={activeLyricRef} className="text-6xl font-bold">{lyrics?.current ?? ""}</p>
-              {lyrics?.future.map(renderLyric)}
-              <div className="h-3/4 shrink-0" aria-hidden="true" />
-            </div>
-        ) : (
-            <div className="w-full h-full text-center flex flex-col justify-center">
-              {/* TODO: Put some sort of not found icon here */}
-              <h2 className="text-4xl italic text-gray-200">No lyrics found...</h2>
-              <h2 className="text-xl italic text-gray-400">You are too tapped into the underground</h2>
-            </div>
-        )}
+        {renderContent()}
       </GlassCard>
   )
 }

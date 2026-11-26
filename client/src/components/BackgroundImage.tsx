@@ -1,4 +1,4 @@
-import {useEffect, useState, useTransition} from "react";
+import {useEffect, useState} from "react";
 
 interface BackgroundImageProps {
   imageSrc?: string;
@@ -28,7 +28,7 @@ export function BackgroundImage(props: BackgroundImageProps) {
         style={{
         backgroundImage: src
           ? `url("${src}")`
-          : "radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(7, 20, 7, 1) 100%)",
+          : "radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(0, 69, 0, 1) 100%)",
           zIndex: -1,
         opacity: hide ? "0%" : "100%"
     }}

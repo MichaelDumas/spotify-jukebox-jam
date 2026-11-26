@@ -1,12 +1,7 @@
 import {useJukeboxStream} from "./useJukeboxStream.ts";
 import {useEffect, useState} from "react";
-import QRCode from "react-qr-code";
-import {PauseIcon} from "./icons/PauseIcon.tsx";
-import {PlayIcon} from "./icons/PlayIcon.tsx";
-import lrclib, {Lyricsfile} from 'lrclib.js';
 import {BackgroundImage} from "./components/BackgroundImage.tsx";
 import {LyricCard} from "./components/LyricCard.tsx";
-import {GlassCard} from "./components/GlassCard.tsx";
 import {NowPlaying} from "./components/NowPlaying.tsx";
 import {QueueCard} from "./components/QueueCard.tsx";
 
@@ -52,7 +47,7 @@ function App() {
       {isConnected ? (
           <>
             {/*TODO remove this image hardcode after just temp while rate limited in dev*/}
-            <BackgroundImage imageSrc={Boolean(nowPlaying?.artistPicture?.trim()) ? nowPlaying?.artistPicture : "https://cdn.sanity.io/images/z2aip6ei/production/e8667e8e42b0250616087d60c74e1a48e58426e2-2560x1060.jpg"} />
+            <BackgroundImage imageSrc={nowPlaying?.artistPicture} />
             <div className="flex gap-6 flex-1 min-h-0">
               <div className="flex-1/3 min-w-0">
                 <QueueCard currentSong={currentSong} songProgress={songProgress}/>

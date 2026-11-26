@@ -9,8 +9,6 @@ import {exchangeCode, getAuthUrl } from "./spotify.ts";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import {getNowPlaying, startPoller} from "./poller.ts";
-// import { QueueDB, RateLimitDB } from './db.js';
-// import { startPoller, getNowPlaying } from './poller.js';
 
 const app = express();
 const PORT = 3000;
